@@ -664,6 +664,30 @@ nav,.hero,.container,footer{
 ===================================== */
 
 
+@media (max-width: 650px) {
+    nav {
+        height: 115px !important;
+        padding: 0 15px 10px 15px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 8px;
+    }
+
+    nav .logo {
+        font-size: 22px;
+        margin: 0;
+    }
+
+    nav .nav-tag {
+        display: none;
+    }
+
+    .sidebar-toggle {
+        top: 10px;
+        left: 12px;
+    }
 }
 </style>
 </head>
