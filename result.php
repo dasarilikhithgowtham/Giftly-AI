@@ -7,10 +7,6 @@
 $apiKey = getenv("GEMINI_API_KEY") ?: "";
 $model = "gemini-3.5-flash-lite";
 
-$host = "localhost";
-$dbUser = "root";
-$dbPassword = "";
-$dbName = "ai_gift_db";
 
 $error = "";
 $success = false;
@@ -28,7 +24,8 @@ function shopLink($shop, $gift) {
         "Amazon" => "https://www.amazon.in/s?k=" . $query,
         "Flipkart" => "https://www.flipkart.com/search?q=" . $query,
         "Myntra" => "https://www.myntra.com/" . $query,
-        "Meesho" => "https://www.meesho.com/search?q=" . $query
+        "Meesho" => "https://www.meesho.com/search?q=" . $query,
+        "Blinkit" => "https://blinkit.com/s/?q=" . $query
     ];
     return $urls[$shop] ?? "#";
 }
@@ -522,100 +519,166 @@ footer{text-align:center;color:#77738a;font-size:11px;padding:30px;border-top:1p
 
 /* ===== GIFTLY AI MOBILE RESPONSIVE FIX ===== */
 
-@media (max-width: 650px) {
-
-    html, body {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        margin: 0;
+@media (max-width: 700px) {
+    body {
+        padding: 18px 14px;
         overflow-x: hidden;
     }
 
-    nav {
-        position: sticky;
-        top: 0;
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 65px;
-        margin: 0 !important;
-        padding: 0 12px 0 76px !important;
-        box-sizing: border-box;
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* The page uses .navbar, not the nav element selector. */
+    .navbar {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: 14px;
+        margin-bottom: 34px;
+    }
+
+    .navbar .logo {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        overflow: hidden;
-    }
-
-    nav .logo {
-        flex: 0 1 auto;
-        min-width: 0;
+        justify-content: center;
+        gap: 7px;
+        width: 100%;
+        font-size: 23px;
+        line-height: 1.2;
         white-space: nowrap;
-        font-size: 21px;
     }
 
-    nav .nav-tag {
-        flex-shrink: 1;
-        max-width: 45%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-size: 9px;
-        padding: 7px 8px;
+    .brand-mark {
+        display: inline-grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        flex: 0 0 36px;
+        border-radius: 10px;
+        background: rgba(167,139,250,.13);
+        font-size: 23px;
     }
 
-    .sidebar-toggle {
-        position: fixed;
-        top: 11px;
-        left: 12px;
-        z-index: 1000;
-    }
-
-    .hero,
-    .container,
-    footer {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        box-sizing: border-box;
+    .navbar .back {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 46px;
+        padding: 11px 14px;
+        text-align: center;
+        white-space: normal;
+        line-height: 1.35;
     }
 
     .hero {
-        padding: 40px 17px 30px !important;
+        margin-bottom: 28px;
+    }
+
+    .hero .emoji {
+        font-size: 43px;
     }
 
     .hero h1 {
-        font-size: clamp(32px, 8vw, 42px);
-        letter-spacing: -1px;
+        font-size: clamp(29px, 8vw, 40px);
+        line-height: 1.12;
     }
 
     .hero p {
-        font-size: 13px;
-        line-height: 1.7;
+        font-size: 14px;
+        padding: 0 4px;
     }
 
-    .container {
-        padding: 0 14px 40px !important;
+    .profile {
+        padding: 20px 17px;
+        margin-bottom: 24px;
     }
 
-    .form-card {
+    .details {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 14px;
+    }
+
+    .detail {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .intro {
+        font-size: 14px;
+        margin: 8px 0 20px;
+    }
+
+    .toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    .toolbar p {
+        line-height: 1.5;
+    }
+
+    .actions {
         width: 100%;
-        padding: 22px 16px;
-        box-sizing: border-box;
     }
 
-    .form-grid {
+    .actions .btn {
+        flex: 1 1 auto;
+        min-height: 42px;
+    }
+
+    .cards {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
 
-    .full-width {
-        grid-column: auto;
+    .gift-card {
+        padding: 19px 16px;
+    }
+
+    .gift-card h3 {
+        font-size: 17px;
+        overflow-wrap: anywhere;
+    }
+
+    .bottom-actions {
+        gap: 10px;
+    }
+
+    footer {
+        padding: 24px 10px;
+        line-height: 1.6;
     }
 }
 
-/* ===== END MOBILE FIX ===== */
+@media (max-width: 380px) {
+    .navbar .logo {
+        font-size: 21px;
+    }
+
+    .details {
+        gap: 16px 10px;
+    }
+
+    .detail strong {
+        font-size: 12px;
+    }
+
+    .card-actions {
+        flex-direction: column;
+    }
+
+    .card-actions button {
+        min-height: 42px;
+    }
+}
+
+/* ===== END MOBILE RESPONSIVE FIX ===== */
 
 </style>
 </head>
@@ -623,7 +686,7 @@ footer{text-align:center;color:#77738a;font-size:11px;padding:30px;border-top:1p
 <div class="container">
 
 <nav class="navbar">
-    <div class="logo"><img src="assets/giftly-logo.png" alt="" style="width:34px;height:34px;object-fit:contain;vertical-align:middle;margin-right:8px">Giftly<span>AI.</span> 🎁</div>
+    <div class="logo"><span class="brand-mark" aria-hidden="true">🎁</span><span>Giftly<span>AI.</span></span></div>
     <a href="index.php" class="back">＋ New Gift Search</a>
 </nav>
 
