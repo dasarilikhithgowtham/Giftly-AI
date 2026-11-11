@@ -9,10 +9,11 @@ RUN apt-get update && apt-get install -y \
 
 # Enable URL rewriting only.
 # The base image already uses Apache prefork MPM.
-RUN echo "=== APACHE MPM CONFIGURATION ===" \
-    && grep -R "^[[:space:]]*LoadModule mpm_" /etc/apache2 \
-    && echo "=== ENABLED MPM MODULES ===" \
-    && ls -l /etc/apache2/mods-enabled/mpm*
+
+RUN echo "=== ALL APACHE MPM LOAD DIRECTIVES ===" \
+    && grep -RniE '^[[:space:]]*LoadModule[[:space:]]+mpm_' /etc/apache2 \
+    || true
+
 
 WORKDIR /var/www/html
 
