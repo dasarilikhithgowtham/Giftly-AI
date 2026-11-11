@@ -458,85 +458,213 @@ nav,.hero,.container,footer{
     width:100%;
     max-width:900px;
 }
-/* ===== RESPONSIVE LAYOUT ===== */
+@media(max-width:850px){
+    .sidebar{transform:translateX(-100%)}
+    .sidebar.open{transform:translateX(0);box-shadow:20px 0 70px rgba(0,0,0,.55)}
+    .sidebar-toggle{display:block}
+    nav,.hero,.container,footer{
+        width:100%;
+        margin-left:0;
+        margin-right:0;
+    }
+    nav{padding-left:60px}
+    .hero{padding-left:17px;padding-right:17px}
+    .container{padding-left:20px;padding-right:20px}
+}
 
+@media(max-width:650px) {
+    nav {padding:0 5%;height:68px}
+    .logo {font-size:22px}
+    .nav-tag {font-size:10px;padding:7px 10px}
+    .hero {padding:45px 17px 30px}
+    .hero h1 {letter-spacing:-1px}
+    .hero p {font-size:13px}
+    .form-card {padding:23px 17px;border-radius:18px}
+    .form-grid {grid-template-columns:1fr;gap:0}
+    .full-width {grid-column:auto}
+    .interest-grid {grid-template-columns:repeat(2,1fr)}
+    .section-heading h2 {font-size:17px}
+    .budget-grid {grid-template-columns:1fr 1fr;gap:10px}
+}
+
+@media(max-width:380px) {
+    .nav-tag {max-width:130px;text-align:center}
+    .budget-grid {grid-template-columns:1fr}
+
+
+/* =====================================
+   GIFTLY AI - RESPONSIVE LAYOUT
+===================================== */
+
+/* Tablet */
 @media (max-width: 850px) {
-    .sidebar { transform: translateX(-100%); }
+
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
     .sidebar.open {
         transform: translateX(0);
         box-shadow: 20px 0 70px rgba(0,0,0,.55);
     }
+
     .sidebar-toggle {
-        display: grid;
-        position: fixed;
-        top: 10px;
-        left: 12px;
-        width: 42px;
-        height: 42px;
-        place-items: center;
-        z-index: 1000;
-        cursor: pointer;
+        display: block;
     }
-    nav, .hero, .container, footer {
+
+    nav,
+    .hero,
+    .container,
+    footer {
         width: 100%;
         margin-left: 0;
         margin-right: 0;
     }
-    .hero { padding-left: 17px; padding-right: 17px; }
-    .container { padding-left: 20px; padding-right: 20px; }
+
+    nav {
+        padding-left: 65px;
+    }
+
+    .hero {
+        padding-left: 17px;
+        padding-right: 17px;
+    }
+
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
+/* Mobile */
 @media (max-width: 650px) {
-    html, body {
+
+    html,
+    body {
         width: 100%;
         max-width: 100%;
         min-width: 0;
+        margin: 0;
         overflow-x: hidden;
     }
+
     nav {
         width: 100%;
-        height: 115px;
-        padding: 55px 15px 10px !important;
+        height: 65px;
+        padding: 0 12px 0 70px !important;
         display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
         align-items: center;
-        gap: 5px;
+        justify-content: space-between;
+        gap: 8px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    nav .logo {
+        font-size: 20px;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    nav .nav-tag {
+        font-size: 9px;
+        padding: 7px 8px;
+        max-width: 45%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .sidebar-toggle {
+        position: fixed;
+        top: 11px;
+        left: 12px;
+        width: 42px;
+        height: 42px;
+        z-index: 1000;
+        display: grid;
+        place-items: center;
+    }
+
+    .hero,
+    .container,
+    footer {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
         box-sizing: border-box;
     }
-    nav .logo {
-        font-size: 22px;
-        white-space: nowrap;
-        margin: 0;
+
+    .hero {
+        padding: 40px 17px 30px;
     }
-    nav .nav-tag { display: none; }
-    .sidebar-toggle { top: 10px; left: 12px; }
-    .hero { padding: 40px 17px 30px; }
+
     .hero h1 {
         font-size: clamp(32px, 8vw, 42px);
         letter-spacing: -1px;
     }
-    .hero p { font-size: 13px; line-height: 1.7; }
-    .container { padding: 0 14px 40px; }
+
+    .hero p {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .container {
+        padding: 0 14px 40px;
+    }
+
     .form-card {
         width: 100%;
         padding: 22px 16px;
         border-radius: 18px;
     }
-    .form-grid { grid-template-columns: 1fr; gap: 0; }
-    .full-width { grid-column: auto; }
-    .interest-grid { grid-template-columns: repeat(2, 1fr); }
-    .section-heading h2 { font-size: 17px; }
-    .budget-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .interest-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .section-heading h2 {
+        font-size: 17px;
+    }
+
+    .budget-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
 }
 
+/* Small phones */
 @media (max-width: 380px) {
-    nav .logo { font-size: 20px; }
-    .budget-grid { grid-template-columns: 1fr; }
+
+    nav .logo {
+        font-size: 18px;
+    }
+
+    nav .nav-tag {
+        max-width: 115px;
+    }
+
+    .budget-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
-/* ===== END RESPONSIVE LAYOUT ===== */
+/* =====================================
+   END RESPONSIVE LAYOUT
+===================================== */
 
+
+}
 </style>
 </head>
 
