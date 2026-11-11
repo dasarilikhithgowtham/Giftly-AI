@@ -23,4 +23,4 @@ COPY . /var/www/html/
 RUN chown -R www-data:www-data /var/www/html
 
 # Start Apache using Railway's assigned port
-CMD ["bash", "-c", "echo '=== RUNTIME MPM SYMLINKS ==='; ls -la /etc/apache2/mods-enabled/mpm*; echo '=== RUNTIME MPM DIRECTIVES ==='; grep -RniE '^[[:space:]]*LoadModule[[:space:]]+mpm_' /etc/apache2 || true; echo '=== STARTING APACHE ==='; PORT=${PORT:-8080}; sed -i \"s/Listen 80/Listen ${PORT}/\" /etc/apache2/ports.conf; sed -i \"s/<VirtualHost \\*:80>/<VirtualHost *:${PORT}>/\" /etc/apache2/sites-available/000-default.conf; apache2-foreground"]
+CMD ["bash", "-c", "echo '=== REMOVING CONFLICTING MPM MODULES ==='; rm -f /etc/apache2/mods-enabled/mpm_event.load /etc/apache2/mods-enabled/mpm_event.conf /etc/apache2/mods-enabled/mpm_worker.load /etc/apache2/mods-enabled/mpm_worker.conf; echo '=== ACTIVE MPM MODULES ==='; ls -l /etc/apache2/mods-enabled/mpm*; PORT=${PORT:-8080}; sed -i \"s/Listen 80/Listen ${PORT}/\" /etc/apache2/ports.conf; sed -i \"s/<VirtualHost \\*:80>/<VirtualHost *:${PORT}>/\" /etc/apache2/sites-available/000-default.conf; apache2-foreground"]
